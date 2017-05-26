@@ -1,0 +1,35 @@
+using UnityEngine;
+using System.Collections;
+
+public class CameraController : MonoBehaviour {
+
+	public int mode;
+	public int angle;
+	public GameObject goal;
+	public GameObject target;
+
+	private int savedAngle = 0;
+
+	void Start () {
+
+	}
+	
+	void Update () {
+		if(mode == 1)
+		{
+			if(angle != savedAngle)
+			{
+				transform.Rotate(new Vector3(0, 0, -angle +savedAngle), Space.World);
+				savedAngle = angle;
+			}
+		}
+		if(mode == 2)
+		{
+			transform.LookAt(goal.transform, Vector3.up);
+		}
+		else if(mode == 3)
+		{
+			transform.LookAt(target.transform, Vector3.up);
+		}
+	}
+}
